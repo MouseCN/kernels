@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="twitter:card" content="summary"><meta property="og:url" content="https://www.opai.im"><meta property="og:title" content="MOUSECN"><meta property="og:description" content="Take a look into the depths of Windows kernels and reveal more than 60000 undocumented structures."><meta property="og:image" content="https://www.opai.im/images/bigback.jpg"><title>MOUSECN | _KPRCB</title><link href="../../../../images/favicon.ico" rel="icon" type="image/x-icon"><link rel="stylesheet" href="../../../../css/dracula.css"><link rel="stylesheet" href="../../../../bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"><link rel="stylesheet" href="../../../../css/verg.css"><link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?9ukd8d"><link rel="prefetch" href="../../../../images/bigback.jpg"><link rel="prefetch" href="../../../../images/abstrHalf.jpg"><link rel="prefetch" href="../../../../images/edit.png"><link rel="prefetch" href="../../../../images/inter.jpg"><link rel="prefetch" href="../../../../images/lonelysturn.jpg"><link rel="prefetch" href="../../../../images/mainpla.png"><link rel="prefetch" href="../../../../images/man.jpg"><link rel="prefetch" href="../../../../images/multlong2.jpg"><link rel="prefetch" href="../../../../images/newfam.jpg"><link rel="prefetch" href="../../../../images/view.jpg"><script async="" src="../../../../gtag/js?id=UA-130860740-1"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag() {
+    dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'UA-130860740-1');
+gtag('set', 'anonymizeIp', true);</script><script src="../../../../jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="../../../../ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script><script src="../../../../bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script><script src="../../../../ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><script src="../../../../js/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body><nav class="navbar navbar-expand-lg navbar-light bg-dark"><a href="../../../../index.htm" tabindex="-1" class="navbar-brand"><img src="../../../../images/logo.png" width="52" height="57" alt="" class="d-inline-block logo">内核世界</a><button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button><div id="navbarSupportedContent" class="collapse navbar-collapse"><ul class="navbar-nav ml-auto"><li class="nav-item"><a href="../../../../index.htm" tabindex="-1" class="nav-link">首页</a></li><li class="nav-item dropdown"><a id="navbarDropdown" tabindex="-1" href="../../../../kernels.html" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle active">内核</a><div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right"><div class="container dropdown-menu-style"><div class="row"><div class="col-md-6 no-pad"><a tabindex="-1" href="../../../x86.html" class="dropdown-item blue-item">32位</a><ul type="none"><li><p class="menu-list"><a href="../../Windows%2010.html" tabindex="-1" class="dropdown-item">- Windows 10</a></p></li><li><p class="menu-list"><a href="../../Windows%208.1.html" tabindex="-1" class="dropdown-item">- Windows 8.1</a></p></li><li><p class="menu-list"><a href="../../Windows%208.html" tabindex="-1" class="dropdown-item">- Windows 8</a></p></li><li><p class="menu-list"><a href="../../Windows%207.html" tabindex="-1" class="dropdown-item">- Windows 7</a></p></li><li><p class="menu-list"><a href="../../Windows%20Vista%20%202008.html" tabindex="-1" class="dropdown-item">- Windows Vista | 2008</a></p></li><li><p class="menu-list"><a href="../../Windows%202003.html" tabindex="-1" class="dropdown-item">- Windows 2003</a></p></li><li><p class="menu-list"><a href="../../Windows%20XP.html" tabindex="-1" class="dropdown-item">- Windows XP</a></p></li></ul></div><div class="col-md-6 no-pad"><a tabindex="-1" href="../../../x64.html" class="dropdown-item blue-item">64位</a><ul type="none"><li><p class="menu-list"><a href="../../../x64/Windows%2011.html" tabindex="-1" class="dropdown-item">- Windows 11</a></p></li><li><p class="menu-list"><a href="../../../x64/Windows%2010%20%202016.html" tabindex="-1" class="dropdown-item">- Windows 10 | 2016</a></p></li><li><p class="menu-list"><a href="../../../x64/Windows%208.1%20%202012R2.html" tabindex="-1" class="dropdown-item">- Windows 8.1 | 2012R2</a></p></li><li><p class="menu-list"><a href="../../../x64/Windows%208%20%202012.html" tabindex="-1" class="dropdown-item">- Windows 8 | 2012</a></p></li><li><p class="menu-list"><a href="../../../x64/Windows%207%20%202008R2.html" tabindex="-1" class="dropdown-item">- Windows 7 | 2008R2</a></p></li><li><p class="menu-list"><a href="../../../x64/Windows%20Vista%20%202008.html" tabindex="-1" class="dropdown-item">- Windows Vista | 2008</a></p></li><li><p class="menu-list"><a href="../../../x64/Windows%20XP%20%202003.html" tabindex="-1" class="dropdown-item">- Windows XP | 2003</a></p></li></ul></div></div></div></div></li><li class="nav-item"><a href="../../../../about.html" tabindex="-1" class="nav-link">关于</a></li></ul></div></nav><div class="container mainblock main-tdata-sm"><div class="row"><div class="col-md-12 breadcrumbs-col"><nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../index.htm" tabindex="-1" class="breadcrumb-link">>首页</a></li><li class="breadcrumb-item"><a href="../../../../kernels.html" tabindex="-1" class="breadcrumb-link">内核</a></li><li class="breadcrumb-item"><a href="../../../x86.html" tabindex="-1" class="breadcrumb-link">32位</a></li><li class="breadcrumb-item"><a href="../../Windows%208.html" tabindex="-1" class="breadcrumb-link">Windows 8</a></li><li class="breadcrumb-item"><a href="../RTM.html" tabindex="-1" class="breadcrumb-link">RTM</a></li><li aria-current="page" class="breadcrumb-item active">_KPRCB</li></ol></nav></div></div><div class="row fill"><div class="col-md-12"><div class="container mainblock-content main-tdata-sm"><div class="row"><div class="col-md-12"><h2 class="h2-tdata">_KPRCB</h2></div></div><div class="row"><div class="col-md-12"><div class="container"><div class="row bs-wizard"><div style="padding-right: 5px;" class="col-sm-4 bs-wizard-step completed toprow d-none d-md-block"><div class="text-center bs-wizard-stepnum"><a href="../../Windows%207/SP1/_KPRCB.html" tabindex="-1" class="wizard-links">Windows 7 SP1 x86</a></div></div><div style="padding-right: 5px;" class="col-sm-4 bs-wizard-step complete toprow d-none d-md-block"><div class="text-center bs-wizard-stepnum"><a href="_KPRCB.html" tabindex="-1" class="wizard-links">Windows 8 RTM x86</a></div></div><div style="padding-right: 5px;" class="col-sm-4 bs-wizard-step completed toprow d-none d-md-block"><div class="text-center bs-wizard-stepnum"><a href="../../Windows%208.1/RTM/_KPRCB.html" tabindex="-1" class="wizard-links">Windows 8.1 RTM x86</a></div></div></div></div><div class="row bs-wizard hide-padd"><div class="col-sm-4 bs-wizard-step completed bottomrow d-none d-md-block"><div class="progress"><div class="progress-bar"></div></div><a href="../../Windows%207/SP1/_KPRCB.html" tabindex="-1" class="bs-wizard-dot"></a></div><div class="col-sm-4 bs-wizard-step complete bottomrow d-none d-md-block"><div class="progress"><div class="progress-bar"></div></div><a href="_KPRCB.html" tabindex="-1" class="bs-wizard-dot"></a></div><div class="col-sm-4 bs-wizard-step completed bottomrow d-none d-md-block"><div class="progress"><div class="progress-bar"></div></div><a href="../../Windows%208.1/RTM/_KPRCB.html" tabindex="-1" class="bs-wizard-dot"></a></div></div></div></div><div class="row"><div class="col-md-12"><div class="container tdata-code"><script type="text/javascript">(function () {
+    new Clipboard('#copy-button');
+})();</script><pre><code style="min-height: 300px; padding-left: 0px;" class="c"><button id="copy-button" data-clipboard-target="#copyblock" tabindex="-1" data-clipboard-action="copy" class="button btn-info">copy</button><div id="copyblock">//0x4160 bytes (sizeof)
+struct _KPRCB
+{
+    USHORT MinorVersion;                                                    //0x0
+    USHORT MajorVersion;                                                    //0x2
+    struct<a class='str-link' tabindex='-1' href='_KTHREAD.html'> _KTHREAD</a>* CurrentThread;                                         //0x4
+    struct<a class='str-link' tabindex='-1' href='_KTHREAD.html'> _KTHREAD</a>* NextThread;                                            //0x8
+    struct<a class='str-link' tabindex='-1' href='_KTHREAD.html'> _KTHREAD</a>* IdleThread;                                            //0xc
+    UCHAR LegacyNumber;                                                     //0x10
+    UCHAR NestingLevel;                                                     //0x11
+    USHORT BuildType;                                                       //0x12
+    CHAR CpuType;                                                           //0x14
+    CHAR CpuID;                                                             //0x15
+    union
+    {
+        USHORT CpuStep;                                                     //0x16
+        struct
+        {
+            UCHAR CpuStepping;                                              //0x16
+            UCHAR CpuModel;                                                 //0x17
+        };
+    };
+    struct <a class='str-link' tabindex='-1' href='_KPROCESSOR_STATE.html'>_KPROCESSOR_STATE</a> ProcessorState;                                //0x18
+    ULONG KernelReserved[16];                                               //0x338
+    ULONG HalReserved[16];                                                  //0x378
+    ULONG CFlushSize;                                                       //0x3b8
+    UCHAR CoresPerPhysicalProcessor;                                        //0x3bc
+    UCHAR LogicalProcessorsPerCore;                                         //0x3bd
+    UCHAR PrcbPad0[2];                                                      //0x3be
+    ULONG MHz;                                                              //0x3c0
+    UCHAR CpuVendor;                                                        //0x3c4
+    UCHAR GroupIndex;                                                       //0x3c5
+    USHORT Group;                                                           //0x3c6
+    ULONG GroupSetMember;                                                   //0x3c8
+    ULONG Number;                                                           //0x3cc
+    UCHAR ClockOwner;                                                       //0x3d0
+    UCHAR PendingTick;                                                      //0x3d1
+    UCHAR PrcbPad1[70];                                                     //0x3d2
+    struct <a class='str-link' tabindex='-1' href='_KSPIN_LOCK_QUEUE.html'>_KSPIN_LOCK_QUEUE</a> LockQueue[17];                                 //0x418
+    struct<a class='str-link' tabindex='-1' href='_KTHREAD.html'> _KTHREAD</a>* NpxThread;                                             //0x4a0
+    ULONG InterruptCount;                                                   //0x4a4
+    ULONG KernelTime;                                                       //0x4a8
+    ULONG UserTime;                                                         //0x4ac
+    ULONG DpcTime;                                                          //0x4b0
+    ULONG DpcTimeCount;                                                     //0x4b4
+    ULONG InterruptTime;                                                    //0x4b8
+    ULONG AdjustDpcThreshold;                                               //0x4bc
+    ULONG PageColor;                                                        //0x4c0
+    UCHAR DebuggerSavedIRQL;                                                //0x4c4
+    UCHAR NodeColor;                                                        //0x4c5
+    UCHAR PrcbPad20[2];                                                     //0x4c6
+    ULONG NodeShiftedColor;                                                 //0x4c8
+    struct<a class='str-link' tabindex='-1' href='_KNODE.html'> _KNODE</a>* ParentNode;                                              //0x4cc
+    ULONG SecondaryColorMask;                                               //0x4d0
+    ULONG DpcTimeLimit;                                                     //0x4d4
+    ULONG PrcbPad21[2];                                                     //0x4d8
+    ULONG CcFastReadNoWait;                                                 //0x4e0
+    ULONG CcFastReadWait;                                                   //0x4e4
+    ULONG CcFastReadNotPossible;                                            //0x4e8
+    ULONG CcCopyReadNoWait;                                                 //0x4ec
+    ULONG CcCopyReadWait;                                                   //0x4f0
+    ULONG CcCopyReadNoWaitMiss;                                             //0x4f4
+    volatile LONG MmSpinLockOrdering;                                       //0x4f8
+    volatile LONG IoReadOperationCount;                                     //0x4fc
+    volatile LONG IoWriteOperationCount;                                    //0x500
+    volatile LONG IoOtherOperationCount;                                    //0x504
+    union<a class='str-link' tabindex='-1' href='_LARGE_INTEGER.html'> _LARGE_INTEGER</a> IoReadTransferCount;                               //0x508
+    union<a class='str-link' tabindex='-1' href='_LARGE_INTEGER.html'> _LARGE_INTEGER</a> IoWriteTransferCount;                              //0x510
+    union<a class='str-link' tabindex='-1' href='_LARGE_INTEGER.html'> _LARGE_INTEGER</a> IoOtherTransferCount;                              //0x518
+    ULONG CcFastMdlReadNoWait;                                              //0x520
+    ULONG CcFastMdlReadWait;                                                //0x524
+    ULONG CcFastMdlReadNotPossible;                                         //0x528
+    ULONG CcMapDataNoWait;                                                  //0x52c
+    ULONG CcMapDataWait;                                                    //0x530
+    ULONG CcPinMappedDataCount;                                             //0x534
+    ULONG CcPinReadNoWait;                                                  //0x538
+    ULONG CcPinReadWait;                                                    //0x53c
+    ULONG CcMdlReadNoWait;                                                  //0x540
+    ULONG CcMdlReadWait;                                                    //0x544
+    ULONG CcLazyWriteHotSpots;                                              //0x548
+    ULONG CcLazyWriteIos;                                                   //0x54c
+    ULONG CcLazyWritePages;                                                 //0x550
+    ULONG CcDataFlushes;                                                    //0x554
+    ULONG CcDataPages;                                                      //0x558
+    ULONG CcLostDelayedWrites;                                              //0x55c
+    ULONG CcFastReadResourceMiss;                                           //0x560
+    ULONG CcCopyReadWaitMiss;                                               //0x564
+    ULONG CcFastMdlReadResourceMiss;                                        //0x568
+    ULONG CcMapDataNoWaitMiss;                                              //0x56c
+    ULONG CcMapDataWaitMiss;                                                //0x570
+    ULONG CcPinReadNoWaitMiss;                                              //0x574
+    ULONG CcPinReadWaitMiss;                                                //0x578
+    ULONG CcMdlReadNoWaitMiss;                                              //0x57c
+    ULONG CcMdlReadWaitMiss;                                                //0x580
+    ULONG CcReadAheadIos;                                                   //0x584
+    ULONG KeAlignmentFixupCount;                                            //0x588
+    ULONG KeExceptionDispatchCount;                                         //0x58c
+    ULONG KeSystemCalls;                                                    //0x590
+    ULONG AvailableTime;                                                    //0x594
+    ULONG PrcbPad22[2];                                                     //0x598
+    struct <a class='str-link' tabindex='-1' href='_PP_LOOKASIDE_LIST.html'>_PP_LOOKASIDE_LIST</a> PPLookasideList[16];                          //0x5a0
+    struct <a class='str-link' tabindex='-1' href='_GENERAL_LOOKASIDE_POOL.html'>_GENERAL_LOOKASIDE_POOL</a> PPNxPagedLookasideList[32];              //0x620
+    struct <a class='str-link' tabindex='-1' href='_GENERAL_LOOKASIDE_POOL.html'>_GENERAL_LOOKASIDE_POOL</a> PPNPagedLookasideList[32];               //0xf20
+    struct <a class='str-link' tabindex='-1' href='_GENERAL_LOOKASIDE_POOL.html'>_GENERAL_LOOKASIDE_POOL</a> PPPagedLookasideList[32];                //0x1820
+    volatile ULONG PacketBarrier;                                           //0x2120
+    volatile LONG ReverseStall;                                             //0x2124
+    VOID* IpiFrame;                                                         //0x2128
+    UCHAR PrcbPad3[52];                                                     //0x212c
+    VOID* volatile CurrentPacket[3];                                        //0x2160
+    volatile ULONG TargetSet;                                               //0x216c
+    VOID (* volatileWorkerRoutine)(VOID* arg1, VOID* arg2, VOID* arg3, VOID* arg4); //0x2170
+    volatile ULONG IpiFrozen;                                               //0x2174
+    UCHAR PrcbPad4[40];                                                     //0x2178
+    volatile ULONG RequestSummary;                                          //0x21a0
+    struct<a class='str-link' tabindex='-1' href='_KPRCB.html'> _KPRCB</a>* volatile SignalDone;                                     //0x21a4
+    UCHAR PrcbPad50[48];                                                    //0x21a8
+    ULONG InterruptLastCount;                                               //0x21d8
+    ULONG InterruptRate;                                                    //0x21dc
+    struct <a class='str-link' tabindex='-1' href='_KDPC_DATA.html'>_KDPC_DATA</a> DpcData[2];                                           //0x21e0
+    VOID* DpcStack;                                                         //0x2208
+    LONG MaximumDpcQueueDepth;                                              //0x220c
+    ULONG DpcRequestRate;                                                   //0x2210
+    ULONG MinimumDpcRate;                                                   //0x2214
+    ULONG DpcLastCount;                                                     //0x2218
+    ULONG PrcbLock;                                                         //0x221c
+    struct <a class='str-link' tabindex='-1' href='_KGATE.html'>_KGATE</a> DpcGate;                                                  //0x2220
+    UCHAR ThreadDpcEnable;                                                  //0x2230
+    volatile UCHAR QuantumEnd;                                              //0x2231
+    volatile UCHAR DpcRoutineActive;                                        //0x2232
+    volatile UCHAR IdleSchedule;                                            //0x2233
+    union
+    {
+        volatile LONG DpcRequestSummary;                                    //0x2234
+        SHORT DpcRequestSlot[2];                                            //0x2234
+        struct
+        {
+            SHORT NormalDpcState;                                           //0x2234
+            SHORT ThreadDpcState;                                           //0x2236
+        };
+        struct
+        {
+            ULONG DpcNormalProcessingActive:1;                              //0x2234
+            ULONG DpcNormalProcessingRequested:1;                           //0x2234
+            ULONG DpcNormalThreadSignal:1;                                  //0x2234
+            ULONG DpcNormalTimerExpiration:1;                               //0x2234
+            ULONG DpcNormalDpcPresent:1;                                    //0x2234
+            ULONG DpcNormalLocalInterrupt:1;                                //0x2234
+            ULONG DpcNormalSpare:10;                                        //0x2234
+            ULONG DpcThreadActive:1;                                        //0x2234
+            ULONG DpcThreadRequested:1;                                     //0x2234
+            ULONG DpcThreadSpare:14;                                        //0x2234
+        };
+    };
+    ULONG LastTimerHand;                                                    //0x2238
+    ULONG LastTick;                                                         //0x223c
+    ULONG PeriodicCount;                                                    //0x2240
+    ULONG PeriodicBias;                                                     //0x2244
+    ULONG ClockInterrupts;                                                  //0x2248
+    ULONG ReadyScanTick;                                                    //0x224c
+    UCHAR BalanceState;                                                     //0x2250
+    UCHAR GroupSchedulingOverQuota;                                         //0x2251
+    UCHAR PrcbPad41[10];                                                    //0x2252
+    struct <a class='str-link' tabindex='-1' href='_KTIMER_TABLE.html'>_KTIMER_TABLE</a> TimerTable;                                        //0x2260
+    struct <a class='str-link' tabindex='-1' href='_KDPC.html'>_KDPC</a> CallDpc;                                                   //0x3aa0
+    LONG ClockKeepAlive;                                                    //0x3ac0
+    UCHAR PrcbPad6[4];                                                      //0x3ac4
+    LONG DpcWatchdogPeriod;                                                 //0x3ac8
+    LONG DpcWatchdogCount;                                                  //0x3acc
+    volatile LONG KeSpinLockOrdering;                                       //0x3ad0
+    ULONG PrcbPad70[1];                                                     //0x3ad4
+    ULONG QueueIndex;                                                       //0x3ad8
+    struct <a class='str-link' tabindex='-1' href='_SINGLE_LIST_ENTRY.html'>_SINGLE_LIST_ENTRY</a> DeferredReadyListHead;                        //0x3adc
+    struct <a class='str-link' tabindex='-1' href='_LIST_ENTRY.html'>_LIST_ENTRY</a> WaitListHead;                                        //0x3ae0
+    ULONG WaitLock;                                                         //0x3ae8
+    ULONG ReadySummary;                                                     //0x3aec
+    ULONG ReadyQueueWeight;                                                 //0x3af0
+    struct<a class='str-link' tabindex='-1' href='_KPRCB.html'> _KPRCB</a>* BuddyPrcb;                                               //0x3af4
+    ULONGLONG StartCycles;                                                  //0x3af8
+    ULONGLONG GenerationTarget;                                             //0x3b00
+    volatile ULONGLONG CycleTime;                                           //0x3b08
+    volatile ULONG HighCycleTime;                                           //0x3b10
+    ULONG ScbOffset;                                                        //0x3b14
+    ULONGLONG AffinitizedCycles;                                            //0x3b18
+    struct <a class='str-link' tabindex='-1' href='_LIST_ENTRY.html'>_LIST_ENTRY</a> DispatcherReadyListHead[32];                         //0x3b20
+    VOID* ChainedInterruptList;                                             //0x3c20
+    LONG LookasideIrpFloat;                                                 //0x3c24
+    struct <a class='str-link' tabindex='-1' href='_RTL_RB_TREE.html'>_RTL_RB_TREE</a> ScbQueue;                                           //0x3c28
+    struct <a class='str-link' tabindex='-1' href='_LIST_ENTRY.html'>_LIST_ENTRY</a> ScbList;                                             //0x3c30
+    volatile LONG MmPageFaultCount;                                         //0x3c38
+    volatile LONG MmCopyOnWriteCount;                                       //0x3c3c
+    volatile LONG MmTransitionCount;                                        //0x3c40
+    volatile LONG MmCacheTransitionCount;                                   //0x3c44
+    volatile LONG MmDemandZeroCount;                                        //0x3c48
+    volatile LONG MmPageReadCount;                                          //0x3c4c
+    volatile LONG MmPageReadIoCount;                                        //0x3c50
+    volatile LONG MmCacheReadCount;                                         //0x3c54
+    volatile LONG MmCacheIoCount;                                           //0x3c58
+    volatile LONG MmDirtyPagesWriteCount;                                   //0x3c5c
+    volatile LONG MmDirtyWriteIoCount;                                      //0x3c60
+    volatile LONG MmMappedPagesWriteCount;                                  //0x3c64
+    volatile LONG MmMappedWriteIoCount;                                     //0x3c68
+    volatile ULONG CachedCommit;                                            //0x3c6c
+    volatile ULONG CachedResidentAvailable;                                 //0x3c70
+    VOID* HyperPte;                                                         //0x3c74
+    UCHAR PrcbPad8[4];                                                      //0x3c78
+    UCHAR VendorString[13];                                                 //0x3c7c
+    UCHAR InitialApicId;                                                    //0x3c89
+    UCHAR LogicalProcessorsPerPhysicalProcessor;                            //0x3c8a
+    UCHAR PrcbPad9[5];                                                      //0x3c8b
+    ULONG FeatureBits;                                                      //0x3c90
+    union<a class='str-link' tabindex='-1' href='_LARGE_INTEGER.html'> _LARGE_INTEGER</a> UpdateSignature;                                   //0x3c98
+    volatile ULONGLONG IsrTime;                                             //0x3ca0
+    ULONG Stride;                                                           //0x3ca8
+    ULONG PrcbPad90;                                                        //0x3cac
+    struct <a class='str-link' tabindex='-1' href='_PROCESSOR_POWER_STATE.html'>_PROCESSOR_POWER_STATE</a> PowerState;                               //0x3cb0
+    ULONG PrcbPad91[1];                                                     //0x3e30
+    struct <a class='str-link' tabindex='-1' href='_KDPC.html'>_KDPC</a> DpcWatchdogDpc;                                            //0x3e34
+    struct <a class='str-link' tabindex='-1' href='_KTIMER.html'>_KTIMER</a> DpcWatchdogTimer;                                        //0x3e58
+    union<a class='str-link' tabindex='-1' href='_SLIST_HEADER.html'> _SLIST_HEADER</a> HypercallPageList;                                  //0x3e80
+    VOID* HypercallPageVirtual;                                             //0x3e88
+    VOID* VirtualApicAssist;                                                //0x3e8c
+    ULONGLONG* StatisticsPage;                                              //0x3e90
+    struct <a class='str-link' tabindex='-1' href='_CACHE_DESCRIPTOR.html'>_CACHE_DESCRIPTOR</a> Cache[5];                                      //0x3e94
+    ULONG CacheCount;                                                       //0x3ed0
+    struct <a class='str-link' tabindex='-1' href='_KAFFINITY_EX.html'>_KAFFINITY_EX</a> PackageProcessorSet;                               //0x3ed4
+    ULONG CacheProcessorMask[5];                                            //0x3ee0
+    ULONG ScanSiblingMask;                                                  //0x3ef4
+    ULONG CoreProcessorSet;                                                 //0x3ef8
+    ULONG ScanSiblingIndex;                                                 //0x3efc
+    ULONG LLCLevel;                                                         //0x3f00
+    VOID* WheaInfo;                                                         //0x3f04
+    VOID* EtwSupport;                                                       //0x3f08
+    union<a class='str-link' tabindex='-1' href='_SLIST_HEADER.html'> _SLIST_HEADER</a> InterruptObjectPool;                                //0x3f10
+    ULONG PrcbPad92[8];                                                     //0x3f18
+    struct<a class='str-link' tabindex='-1' href='_PROCESSOR_PROFILE_CONTROL_AREA.html'> _PROCESSOR_PROFILE_CONTROL_AREA</a>* ProcessorProfileControlArea;    //0x3f38
+    VOID* ProfileEventIndexAddress;                                         //0x3f3c
+    struct <a class='str-link' tabindex='-1' href='_KDPC.html'>_KDPC</a> TimerExpirationDpc;                                        //0x3f40
+    struct <a class='str-link' tabindex='-1' href='_SYNCH_COUNTERS.html'>_SYNCH_COUNTERS</a> SynchCounters;                                   //0x3f60
+    struct <a class='str-link' tabindex='-1' href='_FILESYSTEM_DISK_COUNTERS.html'>_FILESYSTEM_DISK_COUNTERS</a> FsCounters;                            //0x4018
+    struct<a class='str-link' tabindex='-1' href='_CONTEXT.html'> _CONTEXT</a>* Context;                                               //0x4028
+    ULONG ContextFlagsInit;                                                 //0x402c
+    struct<a class='str-link' tabindex='-1' href='_XSAVE_AREA.html'> _XSAVE_AREA</a>* ExtendedState;                                      //0x4030
+    struct <a class='str-link' tabindex='-1' href='_KENTROPY_TIMING_STATE.html'>_KENTROPY_TIMING_STATE</a> EntropyTimingState;                       //0x4034
+}; </div></code></pre></div></div></div></div></div></div><div class="row"><div class="col-md-12"><div class="maincross"><h4 class="h4-tdata">Used in</h4><div class="used-in-block"><ul type="none"><li><a href="_KPCR.html" tabindex="-1" class="related">_KPCR</a>,&nbsp;<a href="_KPRCB.html" tabindex="-1" class="related">_KPRCB</a>,&nbsp;<a href="_KTHREAD.html" tabindex="-1" class="related">_KTHREAD</a>,&nbsp;<a href="_PROC_PERF_CONSTRAINT.html" tabindex="-1" class="related">_PROC_PERF_CONSTRAINT</a>,&nbsp;<a href="_PROC_PERF_DOMAIN.html" tabindex="-1" class="related">_PROC_PERF_DOMAIN</a></li></ul></div></div></div></div></div><footer class="container-fluid footer-fluid"><div class="container"><div class="row"><div class="col-md-12 footer-style"><a href="../../../../terms.html" tabindex="-1" class="footer_link"><strong>服务条款&nbsp;</strong></a><span style="color: #262633">|</span><a href="../../../../privacy.html" tabindex="-1" class="footer_link"><strong>&nbsp;隐私政策&nbsp;</strong></a><span style="color: #262633">|<a href="https://ai.opai.im" tabindex="-1" class="footer_link"><strong>&nbsp;中文GPT &nbsp;</strong></a></span><span style="color: #262633">|</span>&nbsp;© 2024 Copyright: <a href="https://blog.opai.im" tabindex="-1" class="footer_link"><strong>MouseCN&nbsp;</strong></a></div></div></div></footer></body></html>
